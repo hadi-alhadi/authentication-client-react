@@ -1,6 +1,10 @@
 {
   "name": "authentication-client-react",
   "version": "0.1.0",
+  "engines": {
+    "node": ">=20",
+    "npm": ">=10"
+  },
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.1.0",
@@ -64,5 +68,15 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-standard": "^5.0.0",
     "redux-mock-store": "^1.5.4"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js}": [
+      "npm run lint",
+      "git add",
+      "jest --runInBand --coverage=false --findRelatedTests --testTimeout=180000"
+    ],
+    "**/*.{js,ts,tsx,scss,json}": [
+      "prettier --write"
+    ]
   }
 }
