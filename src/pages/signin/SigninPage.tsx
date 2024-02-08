@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./signinPage.css";
 import { NotificationManager } from "react-notifications";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Button, Card } from "react-bootstrap";
 import { useAppDispatch } from "../../redux/hooks";
 import { useSigninMutation } from "../../services/auth.service";
@@ -62,15 +62,7 @@ const SigninPage = () => {
           password: "",
         }}
       >
-        {({
-          handleSubmit,
-          handleChange,
-          handleBlur,
-          values,
-          touched,
-          isValid,
-          errors,
-        }) => (
+        {({ handleSubmit, handleChange, values, touched, errors }) => (
           <Card className="card" style={{ width: "18rem" }}>
             <Card.Title className="title">Sign In Page</Card.Title>
             <Form className="form" noValidate onSubmit={handleSubmit}>
