@@ -7,8 +7,7 @@ export const authAPI = createApi({
   tagTypes: ["Post"],
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/auth" }),
   endpoints: (builder) => ({
-    // eslint-disable-next-line
-    // @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     signin: builder.mutation<any, ISigninRequest>({
       query: ({ email, password }) => ({
         url: `signin`,
@@ -16,8 +15,7 @@ export const authAPI = createApi({
         body: { email, password },
       }),
     }),
-    // eslint-disable-next-line
-    // @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     signup: builder.mutation<any, ISignupRequest>({
       query: ({ name, email, password }) => ({
         url: `signup`,
