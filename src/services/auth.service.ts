@@ -5,7 +5,7 @@ import { ISignupRequest } from "../interfaces/signup.interface";
 export const authAPI = createApi({
   reducerPath: "authAPI",
   tagTypes: ["Post"],
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/auth" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3001/auth" }),
   endpoints: (builder) => ({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     signin: builder.mutation<any, ISigninRequest>({

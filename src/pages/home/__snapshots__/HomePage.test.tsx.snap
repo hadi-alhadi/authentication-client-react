@@ -2,22 +2,20 @@
 
 exports[`renders home page with welcome message 1`] = `
 <div
-  class="home-wrapper"
-  data-testid="home-wrapper"
+  class="sc-beySPh cIGrgw"
+  data-testid="home-page-container"
 >
-  <div>
+  <div
+    class="card"
+    style="width: 18rem;"
+  >
     <div
-      class="card"
-      style="width: 18rem;"
+      class="card-body"
     >
       <div
-        class="card-body"
+        class="card-title h5"
       >
-        <div
-          class="card-title h5"
-        >
-          Welcome to the application.
-        </div>
+        Welcome to the application.
       </div>
     </div>
   </div>

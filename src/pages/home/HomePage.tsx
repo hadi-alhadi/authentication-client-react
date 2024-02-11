@@ -1,20 +1,22 @@
 import { Card, CardTitle } from "react-bootstrap";
-import "./homePage.css";
 import React from "react";
+import styled from "styled-components";
 
 const HomePage = () => {
   return (
-    <>
-      <div className="home-wrapper" data-testid="home-wrapper">
-        <div>
-          <Card style={{ width: "18rem" }}>
-            <Card.Body>
-              <CardTitle>Welcome to the application.</CardTitle>
-            </Card.Body>
-          </Card>
-        </div>
-      </div>
-    </>
+    <HomePageContainer data-testid="home-page-container">
+      <Card style={{ width: "18rem" }}>
+        <Card.Body>
+          <CardTitle>Welcome to the application.</CardTitle>
+        </Card.Body>
+      </Card>
+    </HomePageContainer>
   );
 };
 export default HomePage;
+
+const HomePageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+`;

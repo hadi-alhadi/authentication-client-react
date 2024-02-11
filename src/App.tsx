@@ -24,7 +24,6 @@ function App() {
     const user = localStorage.getItem("user");
     if (user) {
       const userFromStorage = JSON.parse(user);
-      console.log("userFromStorage", userFromStorage);
       dispatch(setAuthenticatedUser(userFromStorage));
     }
     setFinishedInitialize(true);
