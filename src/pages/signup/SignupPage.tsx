@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import { Card } from "react-bootstrap";
@@ -8,10 +9,9 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import { NotificationManager } from "react-notifications";
 import * as yup from "yup";
-import { useSignupMutation } from "../../services/auth.service";
+import { authAPI } from "../../services/auth.service";
 import { setShowLoader } from "../../redux/slices/general.slice";
 import { useAppDispatch } from "../../redux/hooks";
-import "./signupPage.css";
 import { setAuthenticatedUser } from "../../redux/slices/auth.slice";
 
 const schema = yup.object().shape({
@@ -33,13 +33,13 @@ const schema = yup.object().shape({
 });
 
 const SignupPage = () => {
-  const [signup, { data, error, isLoading }] = useSignupMutation();
+  const [signup, { data, error, isLoading }] = authAPI.useSignupMutation();
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (data && !error) {
-      console.log("SignUpPage:: data:", data);
+    if (data?.accessToken && !error) {
       NotificationManager.success(
         `Thank you ${data.name}`,
         "Registration Success",
@@ -54,7 +54,7 @@ const SignupPage = () => {
       );
       console.log(`SignupPage: Authentication error`, error);
     }
-  }, [data, error, dispatch, navigate]);
+  }, [data?.accessToken, error, dispatch, navigate]);
 
   useEffect(() => {
     dispatch(setShowLoader(isLoading));
@@ -70,7 +70,7 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="signup-wrapper">
+    <PageContainer data-testid="signup-page-container">
       <Formik
         validationSchema={schema}
         onSubmit={handleSignup}
@@ -88,9 +88,9 @@ const SignupPage = () => {
           touched,
           errors,
         }) => (
-          <Card className="card" style={{ width: "18rem" }}>
-            <Card.Title className="title">Sign Up Page</Card.Title>
-            <Form className="form" noValidate onSubmit={handleSubmit}>
+          <SignUpCard>
+            <Title>Sign Up Page</Title>
+            <SignUpForm noValidate onSubmit={handleSubmit}>
               <Form.Group as={Col} md="12" controlId="validationFormikName">
                 <Form.Label>Name</Form.Label>
                 <InputGroup hasValidation>
@@ -162,12 +162,34 @@ const SignupPage = () => {
                 <a href="/signin">Sign In</a>
               </div>
               <Button type="submit">Sign Up</Button>
-            </Form>
-          </Card>
+            </SignUpForm>
+          </SignUpCard>
         )}
       </Formik>
-    </div>
+    </PageContainer>
   );
 };
 
 export default SignupPage;
+
+const PageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+`;
+
+const SignUpCard = styled(Card)`
+  padding: 20px;
+  width: 18rem;
+`;
+
+const Title = styled(Card.Title)`
+  text-align: center;
+  padding-top: 20px;
+`;
+
+const SignUpForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
