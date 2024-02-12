@@ -15,8 +15,11 @@ import { setAuthenticatedUser } from "../../redux/slices/auth.slice";
 import { setShowLoader } from "../../redux/slices/general.slice";
 
 const schema = yup.object().shape({
-  email: yup.string().required(),
-  password: yup.string().required(),
+  email: yup
+    .string()
+    .required("Email is required")
+    .email("Invalid email address"),
+  password: yup.string().required("Password is required"),
 });
 
 const SigninPage = () => {
@@ -99,10 +102,10 @@ const SigninPage = () => {
                     onChange={handleChange}
                     isInvalid={touched.password && !!errors.password}
                   />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.password}
+                  </Form.Control.Feedback>
                 </InputGroup>
-                <Form.Control.Feedback type="invalid">
-                  {errors.password}
-                </Form.Control.Feedback>
               </Form.Group>
               <div>
                 <span>Don’t have an account?</span>{" "}
