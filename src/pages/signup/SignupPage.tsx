@@ -6,7 +6,7 @@ import { Card } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import InputGroup from "react-bootstrap/InputGroup";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import { NotificationManager } from "react-notifications";
 import * as yup from "yup";
 import { authAPI } from "../../services/auth.service";
@@ -48,10 +48,10 @@ const SignupPage = () => {
       dispatch(setAuthenticatedUser(data));
       navigate("/home");
     } else if (error) {
-      NotificationManager.error(
-        "Error authenticating user, please check your email and password",
-        "Authentication Error",
-      );
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      const errorMessage = error?.data?.message || "Error authenticating user";
+      NotificationManager.error(errorMessage, "Authentication Error");
       console.log(`SignupPage: Authentication error`, error);
     }
   }, [data?.accessToken, error, dispatch, navigate]);
@@ -94,7 +94,6 @@ const SignupPage = () => {
               <Form.Group as={Col} md="12" controlId="validationFormikName">
                 <Form.Label>Name</Form.Label>
                 <InputGroup hasValidation>
-                  <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
                   <Form.Control
                     type="text"
                     placeholder="Your Name"
@@ -115,7 +114,6 @@ const SignupPage = () => {
               <Form.Group as={Col} md="12" controlId="validationFormikEmail">
                 <Form.Label>Email</Form.Label>
                 <InputGroup hasValidation>
-                  <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
                   <Form.Control
                     type="text"
                     placeholder="Your email address"
@@ -137,9 +135,6 @@ const SignupPage = () => {
               <Form.Group as={Col} md="12" controlId="validationFormikPassword">
                 <Form.Label>Password</Form.Label>
                 <InputGroup hasValidation>
-                  <InputGroup.Text id="inputGroupPrepend">
-                    &#128273;
-                  </InputGroup.Text>
                   <Form.Control
                     type="password"
                     placeholder="Your Password"
@@ -161,7 +156,7 @@ const SignupPage = () => {
                 <span>Already have an account?</span>{" "}
                 <a href="/signin">Sign In</a>
               </div>
-              <Button type="submit">Sign Up</Button>
+              <StyledButton type="submit">Sign Up</StyledButton>
             </SignUpForm>
           </SignUpCard>
         )}
@@ -192,4 +187,16 @@ const SignUpForm = styled(Form)`
   display: flex;
   flex-direction: column;
   gap: 20px;
+`;
+
+const StyledButton = styled.button`
+  border-radius: 30px;
+  box-shadow: none;
+  background-image: linear-gradient(145deg, #2cbd9a, #65c86d);
+  box-sizing: border-box;
+  outline: none;
+  cursor: pointer;
+  border: 0;
+  color: #fff;
+  height: 60px;
 `;
