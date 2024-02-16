@@ -2,10 +2,11 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { ISigninRequest } from "../interfaces/signin.interface";
 import { ISignupRequest } from "../interfaces/signup.interface";
 
+const authService = process.env.AUTH_SERVICE || "http://localhost:3001";
 export const authAPI = createApi({
   reducerPath: "authAPI",
   tagTypes: ["Post"],
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3001/auth" }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${authService}/auth` }),
   endpoints: (builder) => ({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     signin: builder.mutation<any, ISigninRequest>({

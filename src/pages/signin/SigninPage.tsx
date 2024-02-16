@@ -72,7 +72,6 @@ const SigninPage = () => {
               <Form.Group as={Col} md="12" controlId="validationFormikEmail">
                 <Form.Label>Email</Form.Label>
                 <InputGroup hasValidation>
-                  <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
                   <Form.Control
                     type="text"
                     placeholder="Your email address"
@@ -90,9 +89,6 @@ const SigninPage = () => {
               <Form.Group as={Col} md="12" controlId="validationFormikPassword">
                 <Form.Label>Password</Form.Label>
                 <InputGroup hasValidation>
-                  <InputGroup.Text id="inputGroupPrepend">
-                    &#128273;
-                  </InputGroup.Text>
                   <Form.Control
                     type="password"
                     placeholder="Your password"
@@ -111,7 +107,9 @@ const SigninPage = () => {
                 <span>Don’t have an account?</span>{" "}
                 <a href="/signup">Sign Up</a>
               </div>
-              <Button type="submit">Sign In</Button>
+              <Button type="submit" className="submit-button">
+                Sign In
+              </Button>
             </Form>
           </Card>
         )}

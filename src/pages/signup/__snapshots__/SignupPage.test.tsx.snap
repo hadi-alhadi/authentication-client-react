@@ -29,12 +29,6 @@ exports[`SignupPage renders the sign-up page correctly 1`] = `
         <div
           class="input-group has-validation"
         >
-          <span
-            class="input-group-text"
-            id="inputGroupPrepend"
-          >
-            @
-          </span>
           <input
             aria-describedby="inputGroupPrepend"
             class="form-control"
@@ -58,12 +52,6 @@ exports[`SignupPage renders the sign-up page correctly 1`] = `
         <div
           class="input-group has-validation"
         >
-          <span
-            class="input-group-text"
-            id="inputGroupPrepend"
-          >
-            @
-          </span>
           <input
             aria-describedby="inputGroupPrepend"
             class="form-control"
@@ -87,12 +75,6 @@ exports[`SignupPage renders the sign-up page correctly 1`] = `
         <div
           class="input-group has-validation"
         >
-          <span
-            class="input-group-text"
-            id="inputGroupPrepend"
-          >
-            🔑
-          </span>
           <input
             aria-describedby="inputGroupPrepend"
             class="form-control"
@@ -116,7 +98,7 @@ exports[`SignupPage renders the sign-up page correctly 1`] = `
         </a>
       </div>
       <button
-        class="btn btn-primary"
+        class="sc-eDLKkx jYVFEp"
         type="submit"
       >
         Sign Up
